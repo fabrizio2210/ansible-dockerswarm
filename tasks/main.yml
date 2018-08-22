@@ -6,7 +6,7 @@
 
 # Makes sure that the repo cache is fresh
 - name: Update APT cache
-  apt: update_cache=yes
+  apt: update_cache=yes cache_valid_time=86400
   when: ansible_os_family == 'Debian'
   changed_when: false
 
@@ -42,9 +42,10 @@
     and ansible_python_version | version_compare('2.6.0', '>=')
     and ansible_python_version | version_compare('2.7.9', '<')
 
+# Gia' installato da mio role
 # Install the Docker Engine
-- include: docker_engine.yml
-  when: not skip_engine
+#- include: docker_engine.yml
+#  when: not skip_engine
 
 # Install docker-py
 - include: docker_py.yml

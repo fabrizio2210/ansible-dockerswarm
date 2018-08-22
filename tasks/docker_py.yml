@@ -9,9 +9,18 @@
   when: ansible_version is defined
     and ansible_version.full | version_compare('2.2.0.0', '<')
 
-- name: Install docker-py
+#- name: Install docker-py
+#  pip:
+#    name: docker-py
+#    state: present
+#  when: (ansible_version is not defined) or (ansible_version is defined
+#    and ansible_version.full | version_compare('2.2.0.0', '>='))
+#
+#- name: Install docker-compose
+#  pip:
+#    name: docker-compose
+#    state: present
+- name: Install docker-compose e docker-py
   pip:
-    name: docker-py
+    name: docker
     state: present
-  when: (ansible_version is not defined) or (ansible_version is defined
-    and ansible_version.full | version_compare('2.2.0.0', '>='))
