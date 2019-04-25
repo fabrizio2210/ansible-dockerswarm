@@ -40,6 +40,16 @@
   tags:
     - skip_ansible_lint # Suppressing the linter
 
+- name: Get id of unreachable nodes
+  shell: "docker node list | grep Unreachable | awk '{ print $1}'"
+  register: unreachable_nodes
+  changed_when: false
+
+- name: Remove unreachable_nodes
+  shell: "docker node demote {{ item }} ; docker node rm {{ item }}"
+  run_once: true
+  with_items: "{{ unreachable_nodes.stdout_lines }}"
+
 - name: Get the manager join-token.
   shell: docker swarm join-token -q manager
   changed_when: False
