@@ -47,7 +47,7 @@
 
 - name: Remove unreachable_nodes
   shell: "docker node demote {{ item }} ; docker node rm {{ item }}"
-  run_once: true
+  failed_when: false
   with_items: "{{ unreachable_nodes.stdout_lines }}"
 
 - name: Get the manager join-token.
