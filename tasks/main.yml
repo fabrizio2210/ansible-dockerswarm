@@ -20,48 +20,48 @@
 #  when: (not skip_docker_py) or (ansible_os_family == 'Debian'
 #    and ansible_python_version | version_compare('2.6.0', '>=')
 #    and ansible_python_version | version_compare('2.7.9', '<'))
-- name: Remove default python-pip.
-  package:
-    name: python-pip
-    state: absent
-  when: (not skip_docker_py) or (ansible_os_family == 'Debian'
-    and ansible_python_version is version_compare('2.6.0', '>=')
-    and ansible_python_version is version_compare('2.7.9', '<'))
-
-- name: Install easy_install
-  package:
-    name: python-setuptools
-    state: present
-  when: (not skip_docker_py) or (ansible_os_family == 'Debian'
-    and ansible_python_version is version_compare('2.6.0', '>=')
-    and ansible_python_version is version_compare('2.7.9', '<'))
-
-- name: Install pip.
-  easy_install:
-    name: pip
-    state: present
-  when: (not skip_docker_py) or (ansible_os_family == 'Debian'
-    and ansible_python_version is version_compare('2.6.0', '>=')
-    and ansible_python_version is version_compare('2.7.9', '<'))
-
-- name: Install the Python SNI support packages.
-  package:
-    name: "{{ python_sni_support_packages }}"
-    state: present
-  when: ansible_os_family == 'Debian'
-    and ansible_python_version is version_compare('2.6.0', '>=')
-    and ansible_python_version is version_compare('2.7.9', '<')
-
-# There extra pip dependencies are needed to add SSL SNI support to
-# Python version prior to 2.7.9. SNI support is needed by the Ansible
-# apt_key module.
-- name: Install the Python SNI python-pip dependencies.
-  pip:
-    name: "{{ python_sni_pip_dependencies }}"
-    state: present
-  when: ansible_os_family == 'Debian'
-    and ansible_python_version is version_compare('2.6.0', '>=')
-    and ansible_python_version is version_compare('2.7.9', '<')
+#- name: Remove default python-pip.
+#  package:
+#    name: python-pip
+#    state: absent
+#  when: (not skip_docker_py) or (ansible_os_family == 'Debian'
+#    and ansible_python_version is version_compare('2.6.0', '>=')
+#    and ansible_python_version is version_compare('2.7.9', '<'))
+#
+#- name: Install easy_install
+#  package:
+#    name: python-setuptools
+#    state: present
+#  when: (not skip_docker_py) or (ansible_os_family == 'Debian'
+#    and ansible_python_version is version_compare('2.6.0', '>=')
+#    and ansible_python_version is version_compare('2.7.9', '<'))
+#
+#- name: Install pip.
+#  easy_install:
+#    name: pip
+#    state: present
+#  when: (not skip_docker_py) or (ansible_os_family == 'Debian'
+#    and ansible_python_version is version_compare('2.6.0', '>=')
+#    and ansible_python_version is version_compare('2.7.9', '<'))
+#
+#- name: Install the Python SNI support packages.
+#  package:
+#    name: "{{ python_sni_support_packages }}"
+#    state: present
+#  when: ansible_os_family == 'Debian'
+#    and ansible_python_version is version_compare('2.6.0', '>=')
+#    and ansible_python_version is version_compare('2.7.9', '<')
+#
+## There extra pip dependencies are needed to add SSL SNI support to
+## Python version prior to 2.7.9. SNI support is needed by the Ansible
+## apt_key module.
+#- name: Install the Python SNI python-pip dependencies.
+#  pip:
+#    name: "{{ python_sni_pip_dependencies }}"
+#    state: present
+#  when: ansible_os_family == 'Debian'
+#    and ansible_python_version is version_compare('2.6.0', '>=')
+#    and ansible_python_version is version_compare('2.7.9', '<')
 
 # Gia' installato da mio role
 # Install the Docker Engine
@@ -69,8 +69,8 @@
 #  when: not skip_engine
 
 # Install docker-py
-- include: docker_py.yml
-  when: not skip_docker_py
+#- include: docker_py.yml
+#  when: not skip_docker_py
 
 # Adds the Docker admin users to the Docker group
 - include: docker_group.yml
