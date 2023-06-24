@@ -63,14 +63,19 @@
 #    and ansible_python_version is version_compare('2.6.0', '>=')
 #    and ansible_python_version is version_compare('2.7.9', '<')
 
+- name: Install python3-pip
+  package:
+    name: python3-pip
+    state: present
+
 # Gia' installato da mio role
 # Install the Docker Engine
 #- include: docker_engine.yml
 #  when: not skip_engine
 
 # Install docker-py
-#- include: docker_py.yml
-#  when: not skip_docker_py
+- include: docker_py.yml
+  when: not skip_docker_py
 
 # Adds the Docker admin users to the Docker group
 - include: docker_group.yml

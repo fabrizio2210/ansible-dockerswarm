@@ -24,3 +24,13 @@
   pip:
     name: docker
     state: present
+
+- name: Install jsondiff
+  pip:
+    name: jsondiff
+    state: present
+
+- name: Install pyyaml
+  pip:
+    name: pyyaml
+    state: present
