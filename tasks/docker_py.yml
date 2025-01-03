@@ -21,16 +21,16 @@
 #    name: docker-compose
 #    state: present
 - name: Install docker-compose e docker-py
-  pip:
-    name: docker
-    state: present
+  apt: 
+    name: python3-docker
+    state: present 
 
 - name: Install jsondiff
-  pip:
-    name: jsondiff
+  apt:
+    name: python3-jsondiff
     state: present
 
 - name: Install pyyaml
-  pip:
-    name: pyyaml
+  apt:
+    name: python3-yaml
     state: present
